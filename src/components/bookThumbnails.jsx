@@ -10,7 +10,7 @@ const BookThumbnails = ({ query }) => {
     const [genre, setGenre] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    const api_key = 'AIzaSyChRoa3Qq028QuMDAzC8w3xsUdrO6YRDbM'; 
+    const api_key = 'api_key'; 
 
     useEffect(() => {
         const fetchBooks = async () => {
