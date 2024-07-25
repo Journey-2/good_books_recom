@@ -1,0 +1,88 @@
+.book-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book-section{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    max-width: 200px;
+    margin: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100px;
+    height: 150px;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+}
+
+.card img:hover {
+    transform: scale(1.05);
+}
+
+.book-info {
+    font-size: 14px;
+    text-align: center;
+}
+
+.header {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.para {
+    font-size: 14px;
+    margin: 0;
+}
+
+
+.genre-buttons button{
+    background-color: rgb(239, 235, 230);
+    border-color: rgb(232, 227, 220);
+    border: 2px;
+    border-radius: 10%;
+    padding: 10px;
+    margin:5px;
+    transition: transform 0.2s;
+
+}
+
+.genre-buttons button:hover{
+    transform: scale(1.05);
+
+}
+
+.genre-title{
+    text-align: center;
+    font-size: large;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-title{
+    text-align: center;
+    flex-basis: 1500px;
+}

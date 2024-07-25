@@ -1,0 +1,111 @@
+.Nav-Container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Top-Nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.Logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.Auth-Links {
+    display: flex;
+    gap: 10px;
+}
+
+.Auth-Links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding-right: 30px;
+}
+
+.Auth-Links a:hover {
+    background-color: #0176f3;
+    color: black;
+}
+
+.Bottom-Nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.Bottom-Nav.visible {
+    transform: translateY(0);
+}
+
+.Bottom-Nav.hidden {
+    transform: translateY(5%);
+}
+
+.Bottom-Nav a {
+    color: white;
+    border-radius: 5%;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.Bottom-Nav a:hover {
+    background-color: white;
+    color: black;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 60px;
+}
+
