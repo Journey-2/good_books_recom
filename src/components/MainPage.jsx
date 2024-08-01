@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/MainPage.css';
 import Popup from './Popup';
-import Main_Image from '../assets/front.jpg';  // Ensure this path is correct
+import Main_Image from '../assets/front.jpg';  
 
 function FrontImage() {
     return (
@@ -17,7 +17,7 @@ const MainPage = ({ query }) => {
     const [genre, setGenre] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    const api_key = "AIzaSyDLmjfcO_XsONVPGqjWPNcqaXrHs2Xo_YQ";  // Replace with your actual API key
+    const api_key = "AIzaSyDLmjfcO_XsONVPGqjWPNcqaXrHs2Xo_YQ";  
 
     useEffect(() => {
         const fetchBooks = async () => {
