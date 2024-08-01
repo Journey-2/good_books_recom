@@ -86,3 +86,9 @@
     text-align: center;
     flex-basis: 1500px;
 }
+
+
+.front-image{
+    height: 700px;
+    width: 100%;
+}

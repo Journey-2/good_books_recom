@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Navigation_bar from './components/Navigation_bar';
-import BookThumbnails from './components/bookThumbnails';
-import Big_Image from "./components/Front_page"
+import MainPage from './components/MainPage';
 import Page_footer from './components/page_footer'
+import { Route,Routes } from 'react-router-dom';
 
 const App = () => {
     const [query, setQuery] = useState('');
@@ -11,13 +11,13 @@ const App = () => {
         setQuery(newQuery);
     };
 
+
     return (
-        <div>
+        <>
             <Navigation_bar onSearch={handleSearch} />
-            <Big_Image/>
-            <BookThumbnails query={query} />
+            <MainPage query={query} />
             <Page_footer/>
-        </div>
+        </>
     );
 };
 

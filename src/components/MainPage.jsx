@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/bookThumbnails.css';
+import '../styles/MainPage.css';
 import Popup from './Popup';
+import Main_Image from '../assets/front.jpg';  // Ensure this path is correct
 
-const BookThumbnails = ({ query }) => {
+function FrontImage() {
+    return (
+        <img src={Main_Image} alt="Main" className="front-image" />
+    );
+}
+
+const MainPage = ({ query }) => {
     const [books, setBooks] = useState([]);
     const [popularBooks, setPopularBooks] = useState([]);
     const [latestBooks, setLatestBooks] = useState([]);
     const [genre, setGenre] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    const api_key = 'AIzaSyChRoa3Qq028QuMDAzC8w3xsUdrO6YRDbM'; 
+    const api_key = "AIzaSyDLmjfcO_XsONVPGqjWPNcqaXrHs2Xo_YQ";  // Replace with your actual API key
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -139,6 +146,7 @@ const BookThumbnails = ({ query }) => {
                 </>
             ) : (
                 <>
+                    <FrontImage />
                     <h2>Most Popular Books</h2>
                     <div className="book-section">
                         {popularBooks.map((book, index) => (
@@ -193,4 +201,4 @@ const BookThumbnails = ({ query }) => {
     );
 };
 
-export default BookThumbnails;
+export default MainPage;

@@ -40,7 +40,7 @@ function Navigation_bar({ onSearch }) {
                     <button className="search-button" onClick={handleSearch}>Search</button>
                 </div>
                 <div className='Auth-Links'>
-                    <a href='Login' className='Login'>Login</a>
+                    <a href='/AuthForm' className='Login'>Login</a>
                     <a href='Signup' className='Signup'>Signup</a>
                 </div>
             </div>
