@@ -12,6 +12,7 @@
     align-items: center;
 }
 
+
 .popupDialog {
     display: flex;
     flex-direction: column;
@@ -28,6 +29,8 @@
     z-index: 10;
     overflow: auto; 
 }
+
+
 
 .Popup_para{
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -58,28 +61,26 @@ Popup_header4 {
     font-size: 0.75em;
 }
 
+.button_container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
-.close_button {
+
+
+.close_button,.redirect_button,.read_button,.save_button {
     margin-top: 20px;
     transition: transform 0.2s;
     border-radius: 10%;
 }
 
-.close_button:hover{
+.close_button:hover,.redirect_button:hover,.read_button:hover,.save_button:hover{
     transform: scale(1.1);
     box-shadow: 2px 2px ;
 }
 
-.redirect_button{
-    margin-top: 20px;
-    transition: transform 0.2s;
-    border-radius: 10%;
-}
 
-.redirect_button:hover{
-    transform: scale(1.1);
-    box-shadow: 2px 2px ;
-}
 
 ::-webkit-scrollbar {
     width: 12px; 

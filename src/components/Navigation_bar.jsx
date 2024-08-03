@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Navigation_bar.css';
 
 function Navigation_bar({ onSearch }) {
@@ -27,7 +28,7 @@ function Navigation_bar({ onSearch }) {
         <nav className='Nav-Container'>
             <div className='Top-Nav'>
                 <div className='Logo'>
-                    <a href='Logo'>Good-Books</a>
+                    <Link to="/">Good-Books</Link>
                 </div>
                 <div className="search-bar">
                     <input
@@ -40,15 +41,14 @@ function Navigation_bar({ onSearch }) {
                     <button className="search-button" onClick={handleSearch}>Search</button>
                 </div>
                 <div className='Auth-Links'>
-                    <a href='/AuthForm' className='Login'>Login</a>
-                    <a href='Signup' className='Signup'>Signup</a>
+                    <Link to="/auth" className='Login'>Authentication</Link>
                 </div>
             </div>
             <div className={`Bottom-Nav ${isScrolling ? 'hidden' : 'visible'}`}>
-                <a href='Home'>Home</a>
-                <a href='Saved'>Saved</a>
-                <a href='Find'>Find</a>
-                <a href='Community'>Community</a>
+                <Link to="/">Home</Link>
+                <Link to="/saved">Saved</Link>
+                <Link to="/find">Find</Link>
+                <Link to="/community">Community</Link>
             </div>
         </nav>
     );
