@@ -1,30 +1,42 @@
 import React from 'react';
 import '../styles/Popup.css';
+import { db } from '../auth/firebase'; 
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore'; 
 
 const Popup = ({ show, book, handleClose }) => {
     if (!show || !book) {
         return null;
     }
 
-    const handleSave = () => {
-        let savedBooks = JSON.parse(localStorage.getItem('savedBooks')) || [];
-        
-        // Check if the book is already saved
-        const isAlreadySaved = savedBooks.some(savedBook => savedBook.id === book.id);
-        if (isAlreadySaved) {
-            alert(`${book.title} is already saved.`);
-            return;
-        }
-        
-        // Add the book to saved books list
-        savedBooks.push(book);
-        localStorage.setItem('savedBooks', JSON.stringify(savedBooks));
-        alert(`${book.title} has been saved.`);
-    };
-
     const handleRedirect = () => {
         if (book.infoLink) {
             window.open(book.infoLink, '_blank', 'noopener,noreferrer');
+        }
+    };
+
+    const handleSave = async () => {
+        try {
+            const booksCollectionRef = collection(db, 'books');
+
+            const q = query(booksCollectionRef, where("title", "==", book.title));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                alert('This book is already saved.');
+                return;
+            }
+
+            await addDoc(booksCollectionRef, {
+                title: book.title,
+                authors: book.authors || [],
+                description: book.description || 'No description available',
+                thumbnail: book.thumbnail || '../assets/noImage.jpg',
+                infoLink: book.infoLink || ''
+            });
+            alert('Book saved successfully!');
+        } catch (error) {
+            console.error('Error saving book:', error);
+            alert('Failed to save the book.');
         }
     };
 
