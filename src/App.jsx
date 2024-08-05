@@ -4,6 +4,8 @@ import Navigation_bar from './components/Navigation_bar';
 import MainPage from './components/MainPage';
 import Page_footer from './components/Page_footer';
 import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignUpPage';
+import SavedBooks from './components/SavedBooks';
 
 const App = () => {
     const [query, setQuery] = useState('');
@@ -17,7 +19,9 @@ const App = () => {
             <Navigation_bar onSearch={handleSearch} />
             <Routes>
                 <Route path="/" element={<MainPage query={query} />} />
-                <Route path="/auth" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/saved" element={<SavedBooks />} />
             </Routes>
             <Page_footer />
         </Router>

@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../auth/firebase';
+import errorMessages from '../utils/errorMessages';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+    setError(null);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, username, password);
+      console.log('User:', userCredential.user);
+    } catch (error) {
+      console.error('Error signing in:', error);
+      setError(errorMessages[error.code] || 'An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -17,13 +26,14 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <h2 className="login-title">Login</h2>
         <div className="form-group">
-          <label htmlFor="username" className="form-label">Username</label>
+          <label htmlFor="username" className="form-label">Email</label>
           <input
-            type="text"
+            type="email"
             id="username"
-            className="form-input"
+            className={`form-input ${error && 'invalid'}`}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -31,11 +41,13 @@ const LoginPage = () => {
           <input
             type="password"
             id="password"
-            className="form-input"
+            className={`form-input ${error && 'invalid'}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <button type="submit" className="login-button">Login</button>
       </form>
     </div>

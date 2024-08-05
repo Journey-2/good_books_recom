@@ -41,7 +41,8 @@ function Navigation_bar({ onSearch }) {
                     <button className="search-button" onClick={handleSearch}>Search</button>
                 </div>
                 <div className='Auth-Links'>
-                    <Link to="/auth" className='Login'>Authentication</Link>
+                    <Link to="/login" className='Login'>Login</Link>
+                    <Link to="/signup" className='Signup'>Sign Up</Link>
                 </div>
             </div>
             <div className={`Bottom-Nav ${isScrolling ? 'hidden' : 'visible'}`}>
