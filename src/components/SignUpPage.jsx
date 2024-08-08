@@ -1,7 +1,6 @@
-// SignupPage.jsx
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../auth/firebase'; // Make sure the path is correct
+import { auth } from '../auth/firebase';
 import '../styles/SignupPage.css';
 
 const SignupPage = () => {
@@ -11,12 +10,10 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Clear any previous error
+    setError(null); 
     try {
-      // Create a new user with Firebase
       const userCredential = await createUserWithEmailAndPassword(auth, username, password);
       console.log('User registered:', userCredential.user);
-      // Redirect or perform further actions on successful registration
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         setError('Email already in use. Please log in instead.');

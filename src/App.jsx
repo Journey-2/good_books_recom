@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './auth/firebase';
 import Navigation_bar from './components/Navigation_bar';
 import MainPage from './components/MainPage';
 import Page_footer from './components/Page_footer';
@@ -9,6 +11,15 @@ import SavedBooks from './components/SavedBooks';
 
 const App = () => {
     const [query, setQuery] = useState('');
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const handleSearch = (newQuery) => {
         setQuery(newQuery);
@@ -16,7 +27,7 @@ const App = () => {
 
     return (
         <Router>
-            <Navigation_bar onSearch={handleSearch} />
+            <Navigation_bar user={user} onSearch={handleSearch} />
             <Routes>
                 <Route path="/" element={<MainPage query={query} />} />
                 <Route path="/login" element={<LoginPage />} />

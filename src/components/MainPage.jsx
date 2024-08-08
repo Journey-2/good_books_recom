@@ -24,7 +24,7 @@ const MainPage = ({ query }) => {
             try {
                 const popularResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes`, {
                     params: {
-                        q: 'bestseller',
+                        q: 'best seller',
                         key: api_key,
                         maxResults: 10
                     }

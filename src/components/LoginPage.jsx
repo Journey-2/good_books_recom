@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import {useNavigate } from 'react-router-dom';
 import { auth } from '../auth/firebase';
 import errorMessages from '../utils/errorMessages';
 import '../styles/LoginPage.css';
@@ -8,13 +9,17 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigateHome = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, username, password);
+      navigateHome('/')
       console.log('User:', userCredential.user);
+      
     } catch (error) {
       console.error('Error signing in:', error);
       setError(errorMessages[error.code] || 'An unexpected error occurred. Please try again.');
