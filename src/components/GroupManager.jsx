@@ -65,7 +65,7 @@ const GroupManager = () => {
         description: groupDescription,
         category: groupCategory,
         privacy: groupPrivacy,
-        users: [currentUserEmail, ...groupUsers],
+        users: groupUsers, // Include the list of users
       });
       setGroupName('');
       setGroupDescription('');
@@ -82,13 +82,13 @@ const GroupManager = () => {
     setShowAddGroup(true);
     setShowSearch(false);
     setGroups([]);
-    setSelectedGroup(null);
+    setSelectedGroup(null); // Clear the selected group when adding a new one
   };
 
   const toggleSearch = () => {
     setShowSearch(true);
     setShowAddGroup(false);
-    setSelectedGroup(null);
+    setSelectedGroup(null); // Clear the selected group when searching
   };
 
   const handleGroupClick = async (groupId) => {
