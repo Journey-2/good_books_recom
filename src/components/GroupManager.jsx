@@ -32,7 +32,7 @@ const GroupManager = () => {
   const handleAddUser = () => {
     if (userEmail.trim()) {
       setGroupUsers([...groupUsers, userEmail]);
-      setUserEmail(''); // Clear the input after adding
+      setUserEmail(''); 
     }
   };
 
@@ -43,7 +43,7 @@ const GroupManager = () => {
         description: groupDescription,
         category: groupCategory,
         privacy: groupPrivacy,
-        users: groupUsers, // Include the list of users
+        users: groupUsers,
       });
       setGroupName('');
       setGroupDescription('');
@@ -60,13 +60,13 @@ const GroupManager = () => {
     setShowAddGroup(true);
     setShowSearch(false);
     setGroups([]);
-    setSelectedGroup(null); // Clear the selected group when adding a new one
+    setSelectedGroup(null); 
   };
 
   const toggleSearch = () => {
     setShowSearch(true);
     setShowAddGroup(false);
-    setSelectedGroup(null); // Clear the selected group when searching
+    setSelectedGroup(null); 
   };
 
   const handleGroupClick = async (groupId) => {
