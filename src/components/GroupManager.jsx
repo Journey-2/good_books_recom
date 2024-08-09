@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, query, where, doc, getDoc } from "firebase/firestore";
-import { db } from '../auth/firebase';
+import { auth, db } from '../auth/firebase'; // Import auth and db from your Firebase config
+import { onAuthStateChanged } from 'firebase/auth'; // Import the auth state change listener
 import '../styles/GroupManager.css';
 
 const GroupManager = () => {
@@ -15,6 +16,20 @@ const GroupManager = () => {
   const [showAddGroup, setShowAddGroup] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
   const [selectedGroup, setSelectedGroup] = useState(null);
+  const [currentUserEmail, setCurrentUserEmail] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        setCurrentUserEmail(user.email);
+      } else {
+        setCurrentUserEmail('');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const fetchGroups = async () => {
@@ -30,9 +45,16 @@ const GroupManager = () => {
   }, [searchTerm]);
 
   const handleAddUser = () => {
-    if (userEmail.trim()) {
-      setGroupUsers([...groupUsers, userEmail]);
+    if (userEmail.trim() === currentUserEmail) {
+      setError("You cannot add yourself to the group.");
+      return;
+    }
+    if (userEmail.trim() && !groupUsers.includes(userEmail.trim())) {
+      setGroupUsers([...groupUsers, userEmail.trim()]);
       setUserEmail(''); // Clear the input after adding
+      setError(''); // Clear error if any
+    } else {
+      setError("User is either empty or already in the group.");
     }
   };
 
@@ -43,7 +65,7 @@ const GroupManager = () => {
         description: groupDescription,
         category: groupCategory,
         privacy: groupPrivacy,
-        users: groupUsers, // Include the list of users
+        users: [currentUserEmail, ...groupUsers],
       });
       setGroupName('');
       setGroupDescription('');
@@ -60,13 +82,13 @@ const GroupManager = () => {
     setShowAddGroup(true);
     setShowSearch(false);
     setGroups([]);
-    setSelectedGroup(null); // Clear the selected group when adding a new one
+    setSelectedGroup(null);
   };
 
   const toggleSearch = () => {
     setShowSearch(true);
     setShowAddGroup(false);
-    setSelectedGroup(null); // Clear the selected group when searching
+    setSelectedGroup(null);
   };
 
   const handleGroupClick = async (groupId) => {
@@ -74,7 +96,11 @@ const GroupManager = () => {
     const groupDoc = await getDoc(groupRef);
 
     if (groupDoc.exists()) {
-      setSelectedGroup({ id: groupId, ...groupDoc.data() });
+      setSelectedGroup({
+        id: groupId,
+        ...groupDoc.data(),
+        users: groupDoc.data().users || [],
+      });
     } else {
       console.error("Group not found!");
     }
@@ -123,11 +149,15 @@ const GroupManager = () => {
           <p><strong>Privacy:</strong> {selectedGroup.privacy}</p>
           <h4>Members</h4>
           <ul className="user-list">
-            {selectedGroup.users.map((user, index) => (
-              <li key={index} className="user-item">
-                {user}
-              </li>
-            ))}
+            {selectedGroup.users && selectedGroup.users.length > 0 ? (
+              selectedGroup.users.map((user, index) => (
+                <li key={index} className="user-item">
+                  {user}
+                </li>
+              ))
+            ) : (
+              <li>No members</li>
+            )}
           </ul>
           <button onClick={toggleSearch} className="group-button">
             Back to Search
@@ -180,6 +210,7 @@ const GroupManager = () => {
             <button onClick={handleAddUser} className="user-button">
               Add User
             </button>
+            {error && <p className="error-message">{error}</p>}
             <ul className="user-list">
               {groupUsers.map((user, index) => (
                 <li key={index} className="user-item">
