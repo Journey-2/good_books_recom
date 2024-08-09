@@ -1,0 +1,125 @@
+/* GroupManager.css */
+
+/* General Styles */
+.group-manager {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .top-button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .group-input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+  
+  .group-textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .group-select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .group-button {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .user-button {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .group-list, .user-list {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style-type: none;
+  }
+  
+  .group-card, .group-item, .user-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .group-card {
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .group-card:hover {
+    background-color: #dee2e6;
+  }
+  
+  .group-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .group-details h2 {
+    margin-bottom: 10px;
+  }
+  
+  .group-details p {
+    margin: 5px 0;
+  }
+  
+  .group-details h4 {
+    margin-top: 20px;
+  }
+  
+  .group-details .user-list {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style-type: none;
+  }
+  
+  .group-details .user-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  

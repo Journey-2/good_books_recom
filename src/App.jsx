@@ -8,6 +8,7 @@ import Page_footer from './components/Page_footer';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignUpPage';
 import SavedBooks from './components/SavedBooks';
+import GroupManager from './components/GroupManager';
 
 const App = () => {
     const [query, setQuery] = useState('');
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/saved" element={<SavedBooks />} />
+                <Route path='/community' element={<GroupManager/>}/>
             </Routes>
             <Page_footer />
         </Router>
