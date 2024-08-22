@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, query, where, doc, getDoc } from "firebase/firestore";
-import { auth, db } from '../auth/firebase'; // Import auth and db from your Firebase config
-import { onAuthStateChanged } from 'firebase/auth'; // Import the auth state change listener
+import { auth, db } from '../auth/firebase'; 
+import { onAuthStateChanged } from 'firebase/auth'; 
 import '../styles/GroupManager.css';
 
 const GroupManager = () => {
@@ -51,8 +51,8 @@ const GroupManager = () => {
     }
     if (userEmail.trim() && !groupUsers.includes(userEmail.trim())) {
       setGroupUsers([...groupUsers, userEmail.trim()]);
-      setUserEmail(''); // Clear the input after adding
-      setError(''); // Clear error if any
+      setUserEmail(''); 
+      setError(''); 
     } else {
       setError("User is either empty or already in the group.");
     }
@@ -65,7 +65,7 @@ const GroupManager = () => {
         description: groupDescription,
         category: groupCategory,
         privacy: groupPrivacy,
-        users: groupUsers, // Include the list of users
+        users: groupUsers, 
       });
       setGroupName('');
       setGroupDescription('');
@@ -82,13 +82,13 @@ const GroupManager = () => {
     setShowAddGroup(true);
     setShowSearch(false);
     setGroups([]);
-    setSelectedGroup(null); // Clear the selected group when adding a new one
+    setSelectedGroup(null); 
   };
 
   const toggleSearch = () => {
     setShowSearch(true);
     setShowAddGroup(false);
-    setSelectedGroup(null); // Clear the selected group when searching
+    setSelectedGroup(null); 
   };
 
   const handleGroupClick = async (groupId) => {

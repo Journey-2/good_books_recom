@@ -9,6 +9,8 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignUpPage';
 import SavedBooks from './components/SavedBooks';
 import GroupManager from './components/GroupManager';
+// import GenreFilter from './components/GenreFilter';
+
 
 const App = () => {
     const [query, setQuery] = useState('');
