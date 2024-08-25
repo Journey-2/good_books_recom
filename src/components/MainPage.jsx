@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; 
 import axios from 'axios';
 import '../styles/MainPage.css';
 import Popup from './Popup';
-import Main_Image from '../assets/front.jpg';  
+import Main_Image from '../assets/front.jpg';
 
 function FrontImage() {
     return (
@@ -17,7 +18,7 @@ const MainPage = ({ query }) => {
     const [genre, setGenre] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    const api_key = "AIzaSyDLmjfcO_XsONVPGqjWPNcqaXrHs2Xo_YQ";  
+    const api_key = import.meta.env.VITE_API_KEY;
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -191,7 +192,7 @@ const MainPage = ({ query }) => {
                         <button onClick={() => handleGenreClick('religion')}>Religion</button>
                         <button onClick={() => handleGenreClick('science')}>Science</button>
                         <button onClick={() => handleGenreClick('humor')}>Humor</button>
-                        <button onClick={() => handleGenreClick('children')}>Children's</button>
+                        <button onClick={() => handleGenreClick('children')}>Children</button>
                         <button onClick={() => handleGenreClick('horror')}>Horror</button>
                         <button onClick={() => handleGenreClick('drama')}>Drama</button>
                     </div>
@@ -199,6 +200,11 @@ const MainPage = ({ query }) => {
             )}
         </div>
     );
+};
+
+// Add PropTypes validation
+MainPage.propTypes = {
+    query: PropTypes.string
 };
 
 export default MainPage;
